@@ -35,4 +35,14 @@ const validationSettings = {
 }
 
 
-export {initialCards, validationSettings};
+const apiConfig = {
+    link: 'https://mesto.nomoreparties.co/v1/apf-cohort-202/',
+    headers: {
+        authorization: '3c2c77db-a562-41f1-b315-53392c0c264a',
+        'Content-Type': 'application/json'
+    }
+}
+
+
+
+export {initialCards, validationSettings, apiConfig};

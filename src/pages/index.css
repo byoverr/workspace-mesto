@@ -14,4 +14,5 @@
 @import url('../blocks/popup/__input/_type/popup__input_type_error.css');
 @import url('../blocks/popup/_is-animated/popup_is-animated.css');
 @import url('../blocks/popup/_is-opened/popup_is-opened.css');
-
+@import url('../blocks/profile/__avatar-edit/profile__avatar-edit.css');
+@import url('../blocks/profile/__avatar-area/profile__avatar-area.css');

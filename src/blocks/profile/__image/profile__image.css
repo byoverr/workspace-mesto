@@ -5,8 +5,8 @@
   -moz-border-radius: 50%;
   border-radius: 50%;
   background-size: cover;
+  object-fit: cover;
   background-position: center;
-  background-image: url("/src/images/avatar.jpg");
   margin: 0 29px 0 0;
 }
 

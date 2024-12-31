@@ -1,5 +1,7 @@
 .card__description {
   display: flex;
+  margin: 0;
+  height: 35px;
   justify-content: space-between;
   align-items: center;
   background: #fff;
