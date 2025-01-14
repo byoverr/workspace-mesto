@@ -8,7 +8,7 @@ import {
 
 import {createCard} from "./card.js";
 import {enableValidation} from "./validate.js";
-import {validationSettings} from "./сonstants.js";
+import {validationSettings} from "./constants.js";
 import {openModal, closeModal, setCloseEventListeners} from "./modal.js";
 
 import '../pages/index.css';
