@@ -39,12 +39,12 @@ function createCard(card, userId) {
     } else {
         deleteButton.addEventListener('click', () => {
             openModal(deleteCardPopup);
-
-            confirmButton.addEventListener('click', (evt) => {
+            const newConfirmHandler = (evt) => {
                 evt.preventDefault();
 
                 const originalText = confirmButton.textContent;
                 confirmButton.textContent = "Удаление...";
+                confirmButton.disabled = true;
 
                 deleteCard(_id)
                     .then(() => {
@@ -54,11 +54,15 @@ function createCard(card, userId) {
                     .catch(err => console.error("Ошибка при удалении карточки:", err))
                     .finally(() => {
                         confirmButton.textContent = originalText;
+                        confirmButton.disabled = false;
                     });
-            }, { once: true });
+            };
+
+            confirmButton.removeEventListener('click', confirmButton._handler);
+            confirmButton.addEventListener('click', newConfirmHandler, {once: true});
+            confirmButton._handler = newConfirmHandler;
         });
     }
-
 
     // Открытие попапа с изображением
     cardImage.addEventListener('click', () => {

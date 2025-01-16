@@ -66,29 +66,13 @@ function loadUserData() {
         .catch(err => console.error("Ошибка загрузки данных пользователя:", err));
 }
 
-// Функция для проверки, загружено ли изображение
-function isImageLoaded(url) {
-    return new Promise((resolve, reject) => {
-        const img = new Image();
-        img.onload = () => resolve(true);
-        img.onerror = () => reject(false);
-        img.src = url;
-    });
-}
-
 // Функция загрузки карточек
 function loadInitialCards() {
     getInitialCards()
         .then(cards => {
             cards.forEach(card => {
-                isImageLoaded(card.link)
-                    .then(() => {
-                        const cardElement = createCard(card, userId);
-                        placesList.append(cardElement);
-                    })
-                    .catch(() => {
-                        console.log(`Фото для карточки "${card.name}" не загрузилось. Карточка пропущена.`);
-                    });
+                const cardElement = createCard(card, userId);
+                placesList.append(cardElement);
             });
         })
         .catch(err => console.error("Ошибка загрузки карточек:", err));
@@ -103,6 +87,7 @@ function handleProfileFormSubmit(evt) {
     const submitButton = evt.target.querySelector('button');
 
     submitButton.textContent = "Сохранение...";
+    submitButton.disabled = true;
 
     sendUserData({username, description})
         .then(({name, about}) => {
@@ -113,6 +98,7 @@ function handleProfileFormSubmit(evt) {
         .catch(err => console.error("Ошибка обновления профиля:", err))
         .finally(() => {
             submitButton.textContent = "Сохранить";
+            submitButton.disabled = false;
         });
 }
 
@@ -123,8 +109,8 @@ function handleCardFormSubmit(evt) {
     const link = newCardLink.value;
     const submitButton = evt.target.querySelector('button');
 
-
     submitButton.textContent = "Сохранение...";
+    submitButton.disabled = true;
 
     addNewCard({name, link})
         .then(card => {
@@ -137,6 +123,7 @@ function handleCardFormSubmit(evt) {
         .finally(() => {
 
             submitButton.textContent = "Сохранить";
+            submitButton.disabled = false;
         });
 }
 
@@ -148,6 +135,7 @@ function handleAvatarFormSubmit(evt) {
 
 
     submitButton.textContent = "Сохранение...";
+    submitButton.disabled = true;
 
     sendAvatarData({avatar})
         .then(({avatar}) => {
@@ -159,6 +147,7 @@ function handleAvatarFormSubmit(evt) {
         .finally(() => {
 
             submitButton.textContent = "Сохранить";
+            submitButton.disabled = false;
         });
 }
 
